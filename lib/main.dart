@@ -38,11 +38,12 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Movie DB',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: const MoviePage(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
