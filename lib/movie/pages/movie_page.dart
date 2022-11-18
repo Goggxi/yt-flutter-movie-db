@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yt_flutter_movie_db/movie/models/movie_model.dart';
+import 'package:yt_flutter_movie_db/movie/pages/movie_pagination_page.dart';
 import 'package:yt_flutter_movie_db/movie/providers/movie_get_discover_provider.dart';
-import 'package:yt_flutter_movie_db/widget/image_widget.dart';
+import 'package:yt_flutter_movie_db/widget/item_movie_widget.dart';
 
 class MoviePage extends StatelessWidget {
   const MoviePage({super.key});
@@ -47,7 +47,14 @@ class MoviePage extends StatelessWidget {
                     ),
                   ),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const MoviePaginationPage(),
+                        ),
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.black,
                       shape: const StadiumBorder(),
@@ -106,7 +113,13 @@ class _WidgetDiscoverMovieState extends State<WidgetDiscoverMovie> {
               itemCount: provider.movies.length,
               itemBuilder: (_, index, __) {
                 final movie = provider.movies[index];
-                return ItemMovie(movie);
+                return ItemMovieWidget(
+                  movie: movie,
+                  heightBackdrop: 300,
+                  widthBackdrop: double.infinity,
+                  heightPoster: 160,
+                  widthPoster: 100,
+                );
               },
               options: CarouselOptions(
                 height: 300.0,
@@ -141,84 +154,4 @@ class _WidgetDiscoverMovieState extends State<WidgetDiscoverMovie> {
       ),
     );
   }
-}
-
-class ItemMovie extends Container {
-  final MovieModel movie;
-
-  ItemMovie(this.movie, {super.key});
-
-  @override
-  Clip get clipBehavior => Clip.hardEdge;
-
-  @override
-  Decoration? get decoration => BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-      );
-
-  @override
-  Widget? get child => Stack(
-        children: [
-          ImageNetworkWidget(
-            imageSrc: '${movie.backdropPath}',
-            height: 300.0,
-            width: double.infinity,
-          ),
-          Container(
-            height: 300.0,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black87,
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 16.0,
-            left: 16.0,
-            right: 16.0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ImageNetworkWidget(
-                  imageSrc: '${movie.posterPath}',
-                  height: 160,
-                  width: 100,
-                  radius: 12,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  movie.title,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star_rounded,
-                      color: Colors.amber,
-                    ),
-                    Text(
-                      '${movie.voteAverage} (${movie.voteCount})',
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      );
 }

@@ -18,6 +18,7 @@ dependencies:
   provider: ^6.0.4
   dartz: ^0.10.1
   carousel_slider: ^4.1.1
+  infinite_scroll_pagination: ^3.2.0
 
 dev_dependencies:
   flutter_test:
