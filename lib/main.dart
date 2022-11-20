@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:yt_flutter_movie_db/app_constants.dart';
 import 'package:yt_flutter_movie_db/movie/pages/movie_page.dart';
 import 'package:yt_flutter_movie_db/movie/providers/movie_get_discover_provider.dart';
+import 'package:yt_flutter_movie_db/movie/providers/movie_get_now_playing_provider.dart';
 import 'package:yt_flutter_movie_db/movie/providers/movie_get_top_rated_provider.dart';
 import 'package:yt_flutter_movie_db/movie/repostories/movie_repository.dart';
 import 'package:yt_flutter_movie_db/movie/repostories/movie_repository_impl.dart';
@@ -39,6 +40,9 @@ class App extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => MovieGetTopRatedProvider(movieRepository),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => MovieGetNowPlayingProvider(movieRepository),
         ),
       ],
       child: MaterialApp(

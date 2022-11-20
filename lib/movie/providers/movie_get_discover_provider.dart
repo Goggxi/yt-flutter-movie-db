@@ -52,9 +52,7 @@ class MovieGetDiscoverProvider with ChangeNotifier {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(errorMessage),
         ));
-
         pagingController.error = errorMessage;
-
         return;
       },
       (response) {
