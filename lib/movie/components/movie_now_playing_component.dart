@@ -45,7 +45,7 @@ class _MovieNowPlayingComponentState extends State<MovieNowPlayingComponent> {
 
                   return Container(
                     padding: const EdgeInsets.all(8.0),
-                    width: 300,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     height: 200,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(

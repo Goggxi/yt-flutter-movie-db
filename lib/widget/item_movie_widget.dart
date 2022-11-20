@@ -10,6 +10,7 @@ class ItemMovieWidget extends Container {
   final double widthBackdrop;
   final double heightPoster;
   final double widthPoster;
+  final void Function()? onTap;
 
   ItemMovieWidget({
     required this.movie,
@@ -17,6 +18,7 @@ class ItemMovieWidget extends Container {
     required this.widthBackdrop,
     required this.heightPoster,
     required this.widthPoster,
+    this.onTap,
     super.key,
   });
 
@@ -89,6 +91,14 @@ class ItemMovieWidget extends Container {
                   ],
                 ),
               ],
+            ),
+          ),
+          Positioned.fill(
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: onTap,
+              ),
             ),
           ),
         ],

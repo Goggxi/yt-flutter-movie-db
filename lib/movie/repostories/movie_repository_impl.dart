@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:yt_flutter_movie_db/movie/models/movie_detail_model.dart';
 import 'package:yt_flutter_movie_db/movie/models/movie_model.dart';
 import 'package:yt_flutter_movie_db/movie/repostories/movie_repository.dart';
 
@@ -75,6 +76,28 @@ class MovieRepositoryImpl implements MovieRepository {
       }
 
       return const Left('Another error on get now playing movies');
+    }
+  }
+
+  @override
+  Future<Either<String, MovieDetailModel>> getDetail({required int id}) async {
+    try {
+      final result = await _dio.get(
+        '/movie/$id',
+      );
+
+      if (result.statusCode == 200 && result.data != null) {
+        final model = MovieDetailModel.fromMap(result.data);
+        return Right(model);
+      }
+
+      return const Left('Error get movie detail');
+    } on DioError catch (e) {
+      if (e.response != null) {
+        return Left(e.response.toString());
+      }
+
+      return const Left('Another error on get movie detail');
     }
   }
 }

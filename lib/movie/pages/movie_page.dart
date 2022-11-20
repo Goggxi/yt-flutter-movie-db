@@ -29,6 +29,8 @@ class MoviePage extends StatelessWidget {
                 const Text('Movie DB'),
               ],
             ),
+            floating: true,
+            snap: true,
             centerTitle: true,
             backgroundColor: Colors.white,
             foregroundColor: Colors.black,
