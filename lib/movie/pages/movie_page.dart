@@ -77,6 +77,9 @@ class MoviePage extends StatelessWidget {
             },
           ),
           const MovieNowPlayingComponent(),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 16),
+          ),
         ],
       ),
     );

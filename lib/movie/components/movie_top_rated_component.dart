@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yt_flutter_movie_db/movie/pages/movie_detail_page.dart';
 import 'package:yt_flutter_movie_db/movie/providers/movie_get_top_rated_provider.dart';
 import 'package:yt_flutter_movie_db/widget/image_widget.dart';
 
@@ -45,6 +46,13 @@ class _MovieTopRatedComponentState extends State<MovieTopRatedComponent> {
                     height: 200,
                     width: 120,
                     radius: 12.0,
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (_) {
+                          return MovieDetailPage(id: provider.movies[index].id);
+                        },
+                      ));
+                    },
                   );
                 },
                 separatorBuilder: (_, __) => const SizedBox(

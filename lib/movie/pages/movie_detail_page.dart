@@ -7,6 +7,7 @@ import 'package:yt_flutter_movie_db/movie/providers/movie_get_videos_provider.da
 import 'package:yt_flutter_movie_db/widget/image_widget.dart';
 import 'package:yt_flutter_movie_db/widget/item_movie_widget.dart';
 import 'package:yt_flutter_movie_db/widget/webview_widget.dart';
+import 'package:yt_flutter_movie_db/widget/youtube_player_widget.dart';
 
 class MovieDetailPage extends StatelessWidget {
   const MovieDetailPage({super.key, required this.id});
@@ -71,6 +72,23 @@ class MovieDetailPage extends StatelessWidget {
                                         color: Colors.white,
                                         size: 32.0,
                                       ),
+                                    ),
+                                  ),
+                                ),
+                                Positioned.fill(
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => YoutubePlayerWldget(
+                                              youtubeKey: vidio.key,
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),

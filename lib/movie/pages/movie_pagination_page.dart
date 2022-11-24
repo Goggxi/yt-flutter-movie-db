@@ -7,6 +7,8 @@ import 'package:yt_flutter_movie_db/movie/providers/movie_get_now_playing_provid
 import 'package:yt_flutter_movie_db/movie/providers/movie_get_top_rated_provider.dart';
 import 'package:yt_flutter_movie_db/widget/item_movie_widget.dart';
 
+import 'movie_detail_page.dart';
+
 enum TypeMovie { discover, topRated, nowPlaying }
 
 class MoviePaginationPage extends StatefulWidget {
@@ -81,6 +83,13 @@ class _MoviePaginationPageState extends State<MoviePaginationPage> {
             widthBackdrop: double.infinity,
             heightPoster: 140,
             widthPoster: 80,
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (_) {
+                  return MovieDetailPage(id: item.id);
+                },
+              ));
+            },
           ),
         ),
         separatorBuilder: (context, index) => const SizedBox(height: 10),
