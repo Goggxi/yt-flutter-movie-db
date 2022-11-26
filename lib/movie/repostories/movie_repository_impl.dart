@@ -10,6 +10,8 @@ class MovieRepositoryImpl implements MovieRepository {
 
   MovieRepositoryImpl(this._dio);
 
+  
+
   @override
   Future<Either<String, MovieResponseModel>> getDiscover({int page = 1}) async {
     try {
@@ -121,6 +123,31 @@ class MovieRepositoryImpl implements MovieRepository {
       }
 
       return const Left('Another error on get movie videos');
+    }
+  }
+
+  @override
+  Future<Either<String, MovieResponseModel>> search({
+    required String query,
+  }) async {
+    try {
+      final result = await _dio.get(
+        '/search/movie',
+        queryParameters: {"query": query},
+      );
+
+      if (result.statusCode == 200 && result.data != null) {
+        final model = MovieResponseModel.fromMap(result.data);
+        return Right(model);
+      }
+
+      return const Left('Error search movie');
+    } on DioError catch (e) {
+      if (e.response != null) {
+        return Left(e.response.toString());
+      }
+
+      return const Left('Another error on search movie');
     }
   }
 }

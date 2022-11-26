@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yt_flutter_movie_db/movie/components/movie_discover_component.dart';
 import 'package:yt_flutter_movie_db/movie/components/movie_now_playing_component.dart';
 import 'package:yt_flutter_movie_db/movie/components/movie_top_rated_component.dart';
+import 'package:yt_flutter_movie_db/movie/pages/movie_search_page.dart';
 
 import 'movie_pagination_page.dart';
 
@@ -29,6 +30,15 @@ class MoviePage extends StatelessWidget {
                 const Text('Movie DB'),
               ],
             ),
+            actions: [
+              IconButton(
+                onPressed: () => showSearch(
+                  context: context,
+                  delegate: MovieSearchPage(),
+                ),
+                icon: const Icon(Icons.search),
+              ),
+            ],
             floating: true,
             snap: true,
             centerTitle: true,

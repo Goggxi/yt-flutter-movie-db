@@ -5,6 +5,7 @@ import 'package:yt_flutter_movie_db/movie/providers/movie_get_discover_provider.
 import 'package:yt_flutter_movie_db/movie/providers/movie_get_now_playing_provider.dart';
 import 'package:yt_flutter_movie_db/movie/providers/movie_get_top_rated_provider.dart';
 import 'package:yt_flutter_movie_db/movie/providers/movie_get_videos_provider.dart';
+import 'package:yt_flutter_movie_db/movie/providers/movie_serach_provider.dart';
 import 'package:yt_flutter_movie_db/movie/repostories/movie_repository.dart';
 import 'package:yt_flutter_movie_db/movie/repostories/movie_repository_impl.dart';
 
@@ -28,6 +29,9 @@ void setup() {
   );
   sl.registerFactory<MovieGetVideosProvider>(
     () => MovieGetVideosProvider(sl()),
+  );
+  sl.registerFactory<MovieSearchProvider>(
+    () => MovieSearchProvider(sl()),
   );
 
   // Register Repository
